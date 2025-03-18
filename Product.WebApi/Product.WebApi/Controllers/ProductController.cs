@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Product.Application.Features.ProductFeatures.Commands;
 using Product.Application.Features.ProductFeatures.Queries;
 

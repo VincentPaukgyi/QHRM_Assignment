@@ -1,9 +1,7 @@
 ﻿using Dapper;
 using MediatR;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Product.Application.Interfaces;
 using System.Data;
 using productNamespace = Product.Domain.Entities;
 
@@ -14,13 +12,11 @@ namespace Product.Application.Features.ProductFeatures.Queries
 
         public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, IEnumerable<productNamespace.Product>>
         {
-            private readonly IApplicationDbContext _context;
             private readonly string _connectionString;
 
-            public GetAllProductsQueryHandler(IConfiguration configuration, IApplicationDbContext context)
+            public GetAllProductsQueryHandler(IConfiguration configuration)
             {
                 _connectionString = configuration.GetConnectionString("DefaultConnection");
-                _context = context;
             }
 
             public IDbConnection Connection

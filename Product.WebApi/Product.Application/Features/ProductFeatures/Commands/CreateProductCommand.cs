@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Configuration;
 using Product.Application.Interfaces;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Data;
 using productNamespace = Product.Domain.Entities;
 using Microsoft.Data.SqlClient;
@@ -17,12 +16,10 @@ namespace Product.Application.Features.ProductFeatures.Commands
         public decimal Price { get; set; }
         public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Guid>
         {
-            private readonly IApplicationDbContext _context;
             private readonly string _connectionString;
             public CreateProductCommandHandler(IApplicationDbContext context, IConfiguration configuration)
             {
                 _connectionString = configuration.GetConnectionString("DefaultConnection");
-                _context = context;
             }
             public IDbConnection Connection
             {

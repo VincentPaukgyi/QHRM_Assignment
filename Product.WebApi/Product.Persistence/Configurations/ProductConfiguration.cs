@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Reflection.Emit;
 using productNamespace = Product.Domain.Entities;
 namespace Product.Persistence.Configurations
 {

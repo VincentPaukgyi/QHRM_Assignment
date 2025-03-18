@@ -1,5 +1,4 @@
 ﻿using Product.Domain.Common;
-using System.Xml.Linq;
 
 namespace Product.Domain.Entities
 {
