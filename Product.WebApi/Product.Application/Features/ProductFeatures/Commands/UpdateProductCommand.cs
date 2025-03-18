@@ -1,5 +1,10 @@
-﻿using MediatR;
+﻿using Dapper;
+using MediatR;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using Product.Application.Interfaces;
+using Product.Domain.Entities;
+using System.Data;
 using productNamespace = Product.Domain.Entities;
 
 namespace Product.Application.Features.ProductFeatures.Commands
@@ -13,23 +18,31 @@ namespace Product.Application.Features.ProductFeatures.Commands
         public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Guid>
         {
             private readonly IApplicationDbContext _context;
-            public UpdateProductCommandHandler(IApplicationDbContext context)
+            private readonly string _connectionString;
+            public UpdateProductCommandHandler(IApplicationDbContext context, IConfiguration configuration)
             {
                 _context = context;
+                _connectionString = configuration.GetConnectionString("DefaultConnection");
+            }
+
+            public IDbConnection Connection
+            {
+                get
+                {
+                    return new SqlConnection(_connectionString);
+                }
             }
             public async Task<Guid> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
             {
-                var product = _context.Products.Where(a => a.Id == command.Id).FirstOrDefault();
-
-                if (product == null)
+                
+                using (IDbConnection conn = Connection)
                 {
-                    return default;
-                }
-                else
-                {
+                    conn.Open();
+                    string selectquery = "SELECT * FROM Products WHERE Id = @Id";
+                    var product= await conn.QuerySingleOrDefaultAsync<productNamespace.Product>(selectquery, new { command.Id });
                     product.Update(command.Name, command.Description, command.Price);
-                    
-                    return product.Id;
+                    string query = "UPDATE Products SET Name = @Name,Description=@Description, Price = @Price,UpdatedDate=@UpdatedDate WHERE Id = @Id; SELECT @Id";
+                    return await conn.ExecuteScalarAsync<Guid>(query, product);
                 }
             }
         }

@@ -35,6 +35,7 @@ namespace Product.Domain.Entities
             Name = name;
             Description = Description;
             Price = price;
+            UpdatedDate = DateTime.Now;
         }
 
         private static void ValidateInputs(string name, string description, decimal price)

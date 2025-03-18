@@ -1,6 +1,10 @@
-﻿using MediatR;
+﻿using Dapper;
+using MediatR;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Product.Application.Interfaces;
+using System.Data;
 using productNamespace = Product.Domain.Entities;
 
 namespace Product.Application.Features.ProductFeatures.Queries
@@ -11,18 +15,30 @@ namespace Product.Application.Features.ProductFeatures.Queries
         public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, IEnumerable<productNamespace.Product>>
         {
             private readonly IApplicationDbContext _context;
-            public GetAllProductsQueryHandler(IApplicationDbContext context)
+            private readonly string _connectionString;
+
+            public GetAllProductsQueryHandler(IConfiguration configuration, IApplicationDbContext context)
             {
+                _connectionString = configuration.GetConnectionString("DefaultConnection");
                 _context = context;
             }
+
+            public IDbConnection Connection
+            {
+                get
+                {
+                    return new SqlConnection(_connectionString);
+                }
+            }
+           
             public async Task<IEnumerable<productNamespace.Product>> Handle(GetAllProductsQuery query, CancellationToken cancellationToken)
             {
-                var productList = await _context.Products.ToListAsync();
-                if (productList == null)
+                using (IDbConnection conn = Connection)
                 {
-                    return null;
+                    conn.Open();
+                    string allSelectQuery = "SELECT Id, Name, Description, Price, CreatedDate, UpdatedDate FROM Products";
+                    return await conn.QueryAsync<productNamespace.Product>(allSelectQuery);
                 }
-                return productList.AsReadOnly();
             }
         }
     }

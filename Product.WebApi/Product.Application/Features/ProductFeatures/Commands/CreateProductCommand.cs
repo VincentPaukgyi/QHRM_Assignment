@@ -1,6 +1,11 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Configuration;
 using Product.Application.Interfaces;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Data;
 using productNamespace = Product.Domain.Entities;
+using Microsoft.Data.SqlClient;
+using Dapper;
 
 
 namespace Product.Application.Features.ProductFeatures.Commands
@@ -13,14 +18,28 @@ namespace Product.Application.Features.ProductFeatures.Commands
         public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Guid>
         {
             private readonly IApplicationDbContext _context;
-            public CreateProductCommandHandler(IApplicationDbContext context)
+            private readonly string _connectionString;
+            public CreateProductCommandHandler(IApplicationDbContext context, IConfiguration configuration)
             {
+                _connectionString = configuration.GetConnectionString("DefaultConnection");
                 _context = context;
+            }
+            public IDbConnection Connection
+            {
+                get
+                {
+                    return new SqlConnection(_connectionString);
+                }
             }
             public async Task<Guid> Handle(CreateProductCommand command, CancellationToken cancellationToken)
             {
                 var product = productNamespace.Product.Create(command.Name, command.Description, command.Price);
-                return product.Id;
+                using (IDbConnection conn = Connection)
+                {
+                    conn.Open();
+                    string query = "INSERT INTO Products (Id,Name,Description,Price,CreatedDate) VALUES (@Id,@Name,@Description,@Price,@CreatedDate); SELECT @Id";
+                    return await conn.ExecuteScalarAsync<Guid>(query, product);
+                }
             }
         }
     }

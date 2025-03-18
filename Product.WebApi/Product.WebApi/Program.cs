@@ -3,6 +3,7 @@ using Product.Persistence;
 using Product.Application;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
+using Product.Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = new ConfigurationBuilder()
@@ -37,6 +38,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    await using (var serviceScope = app.Services.CreateAsyncScope())
+    await using (var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>())
+    {
+        await dbContext.Database.EnsureCreatedAsync();
+    }
 }
 app.MapScalarApiReference(options =>
 {
