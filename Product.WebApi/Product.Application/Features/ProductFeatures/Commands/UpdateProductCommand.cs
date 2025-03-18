@@ -34,7 +34,7 @@ namespace Product.Application.Features.ProductFeatures.Commands
                 using (IDbConnection conn = Connection)
                 {
                     conn.Open();
-                    string selectquery = "SELECT * FROM Products WHERE Id = @Id";
+                    string selectquery = "SELECT Id, Name, Description, Price,CreatedDate,UpdatedDate FROM Products WHERE Id = @Id";
                     var product= await conn.QuerySingleOrDefaultAsync<productNamespace.Product>(selectquery, new { command.Id });
                     product.Update(command.Name, command.Description, command.Price);
                     string query = "UPDATE Products SET Name = @Name,Description=@Description, Price = @Price,UpdatedDate=@UpdatedDate WHERE Id = @Id; SELECT @Id";

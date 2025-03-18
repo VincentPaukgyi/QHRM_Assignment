@@ -6,7 +6,7 @@ namespace Product.Domain.Entities
     {
         public string Name { get; private set; }
         public string Description { get; private set; }
-        public decimal Price { get; private set; }
+        public decimal Price { get; private set; } = 0;
 
         private Product()
         {

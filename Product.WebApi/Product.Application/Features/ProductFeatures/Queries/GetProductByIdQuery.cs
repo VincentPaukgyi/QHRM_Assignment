@@ -30,7 +30,7 @@ namespace Product.Application.Features.ProductFeatures.Queries
                 using (IDbConnection conn = Connection)
                 {
                     conn.Open();
-                    string selectQuery = "SELECT * FROM Products WHERE Id = @Id";
+                    string selectQuery = "SELECT Id, Name, Description, Price,CreatedDate,UpdatedDate FROM Products WHERE Id = @Id";
                     return await conn.QuerySingleOrDefaultAsync<productNamespace.Product>(selectQuery, new { query.Id });
                 }
             }

@@ -1,4 +1,4 @@
 ﻿namespace Product.Application.Features.ProductFeatures.DTOs
 {
-    public record ProductDto(string Name, string Description, decimal Price);
+    public record ProductDto(Guid Id,string Name, string Description, DateTime CreatedDate);
 }
