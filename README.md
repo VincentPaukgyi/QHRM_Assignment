@@ -29,7 +29,7 @@ After Api is launched successfully, database named ProductDb should be created i
 ![image](https://github.com/user-attachments/assets/ce3880c5-5a30-4b77-9638-ede29fc61ee7)
 <br/>
 <br/>
-Run the script file StoredProcedure.sql located under Infrastructure/Product.Persistence/Scripts to created Database
+Run the script file StoredProcedure.sql(located under Infrastructure/Product.Persistence/Scripts) in Database
 <br/>
 <br/>
 ![image](https://github.com/user-attachments/assets/32096828-55a8-4494-8fd6-b663f0e02e38)
