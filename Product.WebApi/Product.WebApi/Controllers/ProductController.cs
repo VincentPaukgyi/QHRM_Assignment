@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Product.Application.Features.ProductFeatures.Commands;
+using Product.Application.Features.ProductFeatures.DTOs;
 using Product.Application.Features.ProductFeatures.Queries;
+using productNamespace=Product.Domain.Entities;
 
 namespace Product.WebApi.Controllers
 {
@@ -8,14 +11,20 @@ namespace Product.WebApi.Controllers
     [ApiController]
     public class ProductController : BaseApiController
     {
+        private readonly IMapper _mapper;
+        public ProductController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
         /// <summary>
         /// Creates a New Product.
         /// </summary>
-        /// <param name="command"></param>
+        /// <param name="product"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Create(CreateProductCommand command)
+        public async Task<IActionResult> Create(CreateProductDto product)
         {
+            var command = _mapper.Map<CreateProductCommand>(product);
             return Ok(await Mediator.Send(command));
         }
         /// <summary>
@@ -25,7 +34,9 @@ namespace Product.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await Mediator.Send(new GetAllProductsQuery()));
+            var products = await Mediator.Send(new GetAllProductsQuery());
+            var productDtos = _mapper.Map<List<ProductDto>>(products);
+            return Ok(productDtos);
         }
         /// <summary>
         /// Gets Product Entity by Id.
@@ -35,7 +46,9 @@ namespace Product.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            return Ok(await Mediator.Send(new GetProductByIdQuery { Id = id }));
+            var product = await Mediator.Send(new GetProductByIdQuery { Id = id });
+            var productDto = _mapper.Map<ProductDto>(product);
+            return Ok(productDto);
         }
         /// <summary>
         /// Deletes Product Entity based on Id.
@@ -48,18 +61,14 @@ namespace Product.WebApi.Controllers
             return Ok(await Mediator.Send(new DeleteProductByIdCommand { Id = id }));
         }
         /// <summary>
-        /// Updates the Product Entity based on Id.
+        /// Updates the Product Entity.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="command"></param>
+        /// <param name="product"></param>
         /// <returns></returns>
         [HttpPut("[action]")]
-        public async Task<IActionResult> Update(Guid id, UpdateProductCommand command)
+        public async Task<IActionResult> Update(UpdateProductDto product)
         {
-            if (id != command.Id)
-            {
-                return BadRequest();
-            }
+            var command = _mapper.Map<UpdateProductCommand>(product);
             return Ok(await Mediator.Send(command));
         }
     }

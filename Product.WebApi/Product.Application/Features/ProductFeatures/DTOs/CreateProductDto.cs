@@ -1,4 +1,9 @@
 ﻿namespace Product.Application.Features.ProductFeatures.DTOs
 {
-    public record CreateProductDto(string Name, string Description, decimal Price);
+    public class CreateProductDto
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public decimal Price { get; set; }
+    }
 }

@@ -1,4 +1,10 @@
 ﻿namespace Product.Application.Features.ProductFeatures.DTOs
 {
-    public record UpdateProductDto(Guid id, string name, string description, decimal price);
+    public class UpdateProductDto
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public decimal Price { get; set; }
+    }
 }

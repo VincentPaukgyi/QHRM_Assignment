@@ -17,6 +17,7 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddApplication();
+builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddPersistence(config);
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));

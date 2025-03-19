@@ -12,6 +12,7 @@ var config = new ConfigurationBuilder()
 builder.Services.AddControllersWithViews();
 builder.Services.AddApplication();
 builder.Services.AddPersistence(config);
+builder.Services.AddAutoMapper(typeof(Program));
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
 
