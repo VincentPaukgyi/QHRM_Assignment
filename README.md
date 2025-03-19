@@ -18,6 +18,7 @@ Update sql server connection string with your local SQL server setting in appset
 <br/>
 ![image](https://github.com/user-attachments/assets/a34daeec-0aeb-4b14-97f4-8a069c26dc91)
 <br/>
+<br/>
 Run the solution and Api with Scalar UI will launch.
 <br/>
 EntityFramework is used for database creation.
@@ -28,7 +29,8 @@ After Api is launched successfully, database named ProductDb should be created i
 ![image](https://github.com/user-attachments/assets/ce3880c5-5a30-4b77-9638-ede29fc61ee7)
 <br/>
 <br/>
-Run the script file StoredProcedure.sql which is in Infrastructure/Product.Persistence/Scripts
+Run the script file StoredProcedure.sql located under Infrastructure/Product.Persistence/Scripts to created storedprocedures
+<br/>
 <br/>
 ![image](https://github.com/user-attachments/assets/32096828-55a8-4494-8fd6-b663f0e02e38)
 <br/>
