@@ -1,7 +1,8 @@
 # ProductManagement
-Tools Required for Project
+Tools and Framewok Required for Project
 - Microsoft Visual Studio 2022
 - Microsoft SQL Server 2022
+- .Net 9
 
 After downloading the project, Right-click on Solution and go to Properties.
 <br/>
