@@ -13,6 +13,9 @@
 	<thead>
 		<tr>
 			<th>
+				@Html.Display("SN")
+			</th>
+			<th>
 				@Html.DisplayNameFor(model => model.Name)
 			</th>
 			<th>
@@ -24,31 +27,37 @@
 			<th>
 				@Html.DisplayNameFor(model => model.CreatedDate)
 			</th>
-			<th></th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
-		@foreach (var item in Model)
+
+		@for (int i=0; i<Model.Count();i++)
 		{
+			int number = i + 1;
 			<tr>
 				<td>
-					@Html.DisplayFor(modelItem => item.Name)
+					@number
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.Description)
+					@Html.DisplayFor(modelItem => Model.ToList()[i].Name)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.Price)
+					@Html.DisplayFor(modelItem => Model.ToList()[i].Description)
 				</td>
 				<td>
-					@item.CreatedDate.ToString("yyyy-MM-dd HH:mm:ss")
+					@Html.DisplayFor(modelItem => Model.ToList()[i].Price)
 				</td>
 				<td>
-					<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-					<a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-					<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+					@Model.ToList()[i].CreatedDate.ToString("yyyy-MM-dd HH:mm:ss")
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@Model.ToList()[i].Id">Edit</a> |
+					<a asp-action="Details" asp-route-id="@Model.ToList()[i].Id">Details</a> |
+					<a asp-action="Delete" asp-route-id="@Model.ToList()[i].Id">Delete</a>
 				</td>
 			</tr>
+			
 		}
 	</tbody>
 </table>

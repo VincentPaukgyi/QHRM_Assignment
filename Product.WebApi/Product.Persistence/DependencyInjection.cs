@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Product.Application.Interfaces;
 using Product.Persistence.Context;
+using Product.Persistence.Services;
 
 namespace Product.Persistence
 {
@@ -15,6 +16,7 @@ namespace Product.Persistence
                     configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
     }
 }

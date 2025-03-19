@@ -1,4 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Product.Application.Features.ProductFeatures.DTOs
 {
@@ -7,7 +9,8 @@ namespace Product.Application.Features.ProductFeatures.DTOs
         [JsonPropertyName("id")]
         public Guid Id { get; set; }
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
+        
         [JsonPropertyName("description")]
         public string Description { get; set; }
         [JsonPropertyName("createdDate")]

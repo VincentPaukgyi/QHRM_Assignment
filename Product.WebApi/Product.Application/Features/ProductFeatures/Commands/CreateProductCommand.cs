@@ -15,18 +15,17 @@ namespace Product.Application.Features.ProductFeatures.Commands
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public class CreateProductCommandHandler : DapperHelper, IRequestHandler<CreateProductCommand, Guid>
+        public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Guid>
         {
-            public CreateProductCommandHandler(IConfiguration configuration) : base(configuration){}
+            private readonly IProductRepository _productRepository;
+            public CreateProductCommandHandler(IProductRepository productRepository) 
+            {
+                _productRepository = productRepository;
+            }
             public async Task<Guid> Handle(CreateProductCommand command, CancellationToken cancellationToken)
             {
                 var product = productNamespace.Product.Create(command.Name, command.Description, command.Price);
-                using (IDbConnection conn = Connection)
-                {
-                    conn.Open();
-                    string query = "INSERT INTO Products (Id,Name,Description,Price,CreatedDate) VALUES (@Id,@Name,@Description,@Price,@CreatedDate); SELECT @Id";
-                    return await conn.ExecuteScalarAsync<Guid>(query, product);
-                }
+                return await _productRepository.CreateAsync(product);
             }
         }
     }

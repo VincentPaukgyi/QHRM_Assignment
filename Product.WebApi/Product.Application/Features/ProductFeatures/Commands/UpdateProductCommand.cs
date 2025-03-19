@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Product.Application.Helpers;
+using Product.Application.Interfaces;
 using System.Data;
 using productNamespace = Product.Domain.Entities;
 
@@ -14,21 +15,18 @@ namespace Product.Application.Features.ProductFeatures.Commands
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public class UpdateProductCommandHandler : DapperHelper, IRequestHandler<UpdateProductCommand, Guid>
+        public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Guid>
         {
-            public UpdateProductCommandHandler(IConfiguration configuration) : base(configuration){}
+            private readonly IProductRepository _productRepository;
+            public UpdateProductCommandHandler(IProductRepository productRepository)
+            {
+                _productRepository = productRepository;
+            }
             public async Task<Guid> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
             {
-                
-                using (IDbConnection conn = Connection)
-                {
-                    conn.Open();
-                    string selectquery = "SELECT Id, Name, Description, Price,CreatedDate,UpdatedDate FROM Products WHERE Id = @Id";
-                    var product= await conn.QuerySingleOrDefaultAsync<productNamespace.Product>(selectquery, new { command.Id });
-                    product.Update(command.Name, command.Description, command.Price);
-                    string query = "UPDATE Products SET Name = @Name,Description=@Description, Price = @Price,UpdatedDate=@UpdatedDate WHERE Id = @Id; SELECT @Id";
-                    return await conn.ExecuteScalarAsync<Guid>(query, product);
-                }
+                var product = await _productRepository.GetByIdAsync(command.Id);
+                product.Update(command.Name, command.Description, command.Price);
+               return await _productRepository.UpdateAsync(product);
             }
         }
     }
