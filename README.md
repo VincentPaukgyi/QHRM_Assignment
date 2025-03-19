@@ -52,22 +52,12 @@ Select IIS Express as Debug Target for All.
 Update the log file path for Product.WebApi and Product.WebApp according to your PC.
 <br/>
 <br/>
-![image](https://github.com/user-attachments/assets/407c1ed6-7838-432d-8f19-1dd38b219325)
+![image](https://github.com/user-attachments/assets/64ed960d-5536-41ae-9137-ab71eb0f1c23)
 <br/>
 <br/>
 Run the solution and two browser pages will launch.
 <br/>
 Api with Scalar UI and Website for Product CRUD.
-<br/>
-EntityFramework is used for database creation.
-<br/>
-After projects are launched successfully, database named ProductDb should be created in your local server.
-<br/>
-<br/>
-![image](https://github.com/user-attachments/assets/501514f3-27a2-46eb-b87e-d3f5168af1a5)
-<br/>
-<br/>
-
 <br/>
 <br/>
 Now Project is ready for testing.
