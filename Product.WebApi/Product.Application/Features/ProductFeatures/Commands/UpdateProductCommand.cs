@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using Product.Application.Helpers;
 using System.Data;
 using productNamespace = Product.Domain.Entities;
 
@@ -13,21 +14,9 @@ namespace Product.Application.Features.ProductFeatures.Commands
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Guid>
+        public class UpdateProductCommandHandler : DapperHelper, IRequestHandler<UpdateProductCommand, Guid>
         {
-            private readonly string _connectionString;
-            public UpdateProductCommandHandler(IConfiguration configuration)
-            {
-               _connectionString = configuration.GetConnectionString("DefaultConnection");
-            }
-
-            public IDbConnection Connection
-            {
-                get
-                {
-                    return new SqlConnection(_connectionString);
-                }
-            }
+            public UpdateProductCommandHandler(IConfiguration configuration) : base(configuration){}
             public async Task<Guid> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
             {
                 

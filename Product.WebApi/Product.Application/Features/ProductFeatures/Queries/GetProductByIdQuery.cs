@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using Product.Application.Helpers;
 using System.Data;
 using productNamespace = Product.Domain.Entities;
 
@@ -10,21 +11,9 @@ namespace Product.Application.Features.ProductFeatures.Queries
     public class GetProductByIdQuery : IRequest<productNamespace.Product>
     {
         public Guid Id { get; set; }
-        public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, productNamespace.Product>
+        public class GetProductByIdQueryHandler : DapperHelper, IRequestHandler<GetProductByIdQuery, productNamespace.Product>
         {
-            private readonly string _connectionString;
-            public GetProductByIdQueryHandler(IConfiguration configuration)
-            {
-                _connectionString = configuration.GetConnectionString("DefaultConnection");
-            }
-
-            public IDbConnection Connection
-            {
-                get
-                {
-                    return new SqlConnection(_connectionString);
-                }
-            }
+            public GetProductByIdQueryHandler(IConfiguration configuration) : base(configuration) { }
             public async Task<productNamespace.Product> Handle(GetProductByIdQuery query, CancellationToken cancellationToken)
             {
                 using (IDbConnection conn = Connection)

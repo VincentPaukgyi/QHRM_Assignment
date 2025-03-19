@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Product.Application.Helpers;
 using System.Data;
 
 namespace Product.Application.Features.ProductFeatures.Commands
@@ -10,20 +11,9 @@ namespace Product.Application.Features.ProductFeatures.Commands
     public class DeleteProductByIdCommand : IRequest<Guid>
     {
         public Guid Id { get; set; }
-        public class DeleteProductByIdCommandHandler : IRequestHandler<DeleteProductByIdCommand, Guid>
+        public class DeleteProductByIdCommandHandler : DapperHelper, IRequestHandler<DeleteProductByIdCommand, Guid>
         {
-            private readonly string _connectionString;
-            public DeleteProductByIdCommandHandler(IConfiguration configuration)
-            {
-                _connectionString = configuration.GetConnectionString("DefaultConnection");
-            }
-            public IDbConnection Connection
-            {
-                get
-                {
-                    return new SqlConnection(_connectionString);
-                }
-            }
+            public DeleteProductByIdCommandHandler(IConfiguration configuration) : base(configuration){}
             public async Task<Guid> Handle(DeleteProductByIdCommand command, CancellationToken cancellationToken)
             {
                 using (IDbConnection conn = Connection)

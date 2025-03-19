@@ -32,7 +32,7 @@ namespace Product.Domain.Entities
             ValidateInputs(name, description, price);
 
             Name = name;
-            Description = Description;
+            Description = description;
             Price = price;
             UpdatedDate = DateTime.Now;
         }
