@@ -1,4 +1,7 @@
 # ProductManagement
+Tools required for project
+- Visual Studio 2022
+- Microsoft SQL Server 2022
 After downloading the project, Right-click on Solution and go to Properties.
 <br/>
 Set Product.WebApi as StartUp Project
