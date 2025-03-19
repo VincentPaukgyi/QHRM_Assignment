@@ -4,7 +4,7 @@ Tools required for project
 - Microsoft SQL Server 2022
 <br/>
 Framework
-- .Net 9
+- Dot Net 9
 <br/>
 <br/>
 After downloading the project, Right-click on Solution and go to Properties.
