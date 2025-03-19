@@ -38,6 +38,7 @@ After projects are launched successfully, database named ProductDb should be cre
 <br/>
 <br/>
 Run the script file StoredProcedure.sql which is in Infrastructure/Product.Persistence/Scripts
+<br/>
 ![image](https://github.com/user-attachments/assets/32096828-55a8-4494-8fd6-b663f0e02e38)
 <br/>
 <br/>
