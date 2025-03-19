@@ -19,7 +19,8 @@ EntityFramework is used for database creation.
 <br/>
 After Api is launched successfully, database named ProductDb should be created in your local server.
 <br/>
-![image](https://github.com/user-attachments/assets/501514f3-27a2-46eb-b87e-d3f5168af1a5)
+![image](https://github.com/user-attachments/assets/407c1ed6-7838-432d-8f19-1dd38b219325)
+
 <br/>
 Run the script file StoredProcedure.sql which is in Infrastructure/Product.Persistence/Scripts
 <br/>
@@ -38,7 +39,7 @@ Select IIS Express as Debug Target for All.
 Update sql server connection string with your local SQL server setting in appsettings.json of Product.WebApi 
 <br/>
 <br/>
-![image](https://github.com/user-attachments/assets/407c1ed6-7838-432d-8f19-1dd38b219325)
+
 <br/>
 <br/>
 Update the log file path for Product.WebApi and Product.WebApp according to your PC.
@@ -56,7 +57,7 @@ EntityFramework is used for database creation.
 After projects are launched successfully, database named ProductDb should be created in your local server.
 <br/>
 <br/>
-
+![image](https://github.com/user-attachments/assets/501514f3-27a2-46eb-b87e-d3f5168af1a5)
 <br/>
 <br/>
 
@@ -65,5 +66,4 @@ After projects are launched successfully, database named ProductDb should be cre
 Now Project is ready for testing.
 <br/>
 <br/>
-![image](https://github.com/user-attachments/assets/4a29b828-6605-4d99-9b0b-2d4325793c9e)
 
