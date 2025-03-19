@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/f18333ce-6537-461f-9b79-4c3c6bf47076)# ProductManagement
+# ProductManagement
 After downloading the project, Right-click on Solution and go to Properties.
 <br/>
 Choose Multiple startup projects:
