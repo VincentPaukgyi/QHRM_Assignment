@@ -1,5 +1,6 @@
 using Product.Persistence;
 using Product.Application;
+using Product.Service;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ var config = new ConfigurationBuilder()
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddApplication();
+builder.Services.AddService();
 builder.Services.AddPersistence(config);
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Host.UseSerilog((context, configuration) =>

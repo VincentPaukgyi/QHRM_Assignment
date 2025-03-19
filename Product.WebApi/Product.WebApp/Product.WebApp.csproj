@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Product.Persistence\Product.Persistence.csproj" />
+    <ProjectReference Include="..\Product.Service\Product.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>

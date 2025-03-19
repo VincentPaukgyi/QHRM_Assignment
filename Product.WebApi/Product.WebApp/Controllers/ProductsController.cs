@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Product.Application.Features.ProductFeatures.DTOs;
 using Product.Application.Interfaces;
-using Product.Domain.Entities;
-using Product.Persistence.Context;
 using productNamespace = Product.Domain.Entities;
 
 namespace Product.WebApp.Controllers
@@ -16,33 +9,25 @@ namespace Product.WebApp.Controllers
     public class ProductsController : Controller
     {
         private readonly IApplicationDbContext _context;
+        private readonly IProductApiClient _productApiClient;
 
-        public ProductsController(IApplicationDbContext context)
+        public ProductsController(IApplicationDbContext context,
+            IProductApiClient productApiClient)
         {
             _context = context;
+            _productApiClient = productApiClient;
         }
 
         // GET: Products
         public IActionResult Index()
         {
-            return View(new List<ProductDto>());
+            return View(_productApiClient.GetAll());
         }
 
         // GET: Products/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
+            var product = _productApiClient.GetById(id);
             return View(product);
         }
 
@@ -57,13 +42,11 @@ namespace Product.WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Price,Id,CreatedDate,UpdatedDate")] productNamespace.Product product)
+        public async Task<IActionResult> Create([Bind("Name,Description,Price")] CreateProductDto product)
         {
             if (ModelState.IsValid)
             {
-                //product.Id = Guid.NewGuid();
-                //_context.Add(product);
-                //await _context.SaveChangesAsync();
+                _productApiClient.Create(product);
                 return RedirectToAction(nameof(Index));
             }
             return View(product);

@@ -10,6 +10,7 @@ namespace Product.WebApi.Helpers
         public MappingProfiles()
         {
             CreateMap<productNamespace.Product, ProductDto>();
+            CreateMap<productNamespace.Product, ProductDetailsDto>();
             CreateMap<CreateProductDto, CreateProductCommand>();
             CreateMap<UpdateProductDto, UpdateProductCommand>();
         }

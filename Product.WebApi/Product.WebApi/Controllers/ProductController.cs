@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Product.Application.Features.ProductFeatures.Commands;
 using Product.Application.Features.ProductFeatures.DTOs;
 using Product.Application.Features.ProductFeatures.Queries;
-using productNamespace=Product.Domain.Entities;
 
 namespace Product.WebApi.Controllers
 {
@@ -25,7 +24,8 @@ namespace Product.WebApi.Controllers
         public async Task<IActionResult> Create(CreateProductDto product)
         {
             var command = _mapper.Map<CreateProductCommand>(product);
-            return Ok(await Mediator.Send(command));
+            await Mediator.Send(command);
+            return Ok();
         }
         /// <summary>
         /// Gets all Products.
@@ -47,7 +47,7 @@ namespace Product.WebApi.Controllers
         public async Task<IActionResult> GetById(Guid id)
         {
             var product = await Mediator.Send(new GetProductByIdQuery { Id = id });
-            var productDto = _mapper.Map<ProductDto>(product);
+            var productDto = _mapper.Map<ProductDetailsDto>(product);
             return Ok(productDto);
         }
         /// <summary>
