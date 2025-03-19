@@ -37,6 +37,10 @@ After projects are launched successfully, database named ProductDb should be cre
 ![image](https://github.com/user-attachments/assets/501514f3-27a2-46eb-b87e-d3f5168af1a5)
 <br/>
 <br/>
+Run the script file StoredProcedure.sql which is in Infrastructure/Product.Persistence/Scripts
+![image](https://github.com/user-attachments/assets/32096828-55a8-4494-8fd6-b663f0e02e38)
+<br/>
+<br/>
 Now Project is ready for testing.
 <br/>
 <br/>
