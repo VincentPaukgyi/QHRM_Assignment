@@ -34,6 +34,8 @@ Run the script file StoredProcedure.sql located under Infrastructure/Product.Per
 <br/>
 ![image](https://github.com/user-attachments/assets/32096828-55a8-4494-8fd6-b663f0e02e38)
 <br/>
+Stop the application and right-clik on Solution.
+Go to properties and Select Multiple Startup Projects:
 Set Product.WebApi, Product.WebApp as Startup projects.
 <br/>
 <br/>
