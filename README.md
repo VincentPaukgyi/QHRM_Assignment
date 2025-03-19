@@ -12,3 +12,8 @@ Set Product.WebApi, Product.WebApp as Startup projects.
 Order must be as shown in Figure.
 <br/>
 Select IIS Express as Debug Target for All.
+<br/>
+Update sql server connection string with your local SQL server setting in appsettings.json of Product.WebApi 
+<br/>
+<br/>
+![image](https://github.com/user-attachments/assets/407c1ed6-7838-432d-8f19-1dd38b219325)
