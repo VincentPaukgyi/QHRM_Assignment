@@ -11,6 +11,7 @@ Select IIS Express as Debug Target
 Update sql server connection string with your local SQL server setting in appsettings.json of Product.WebApi
 <br/>
 <br/>
+
 ![image](https://github.com/user-attachments/assets/51433b0b-cd22-4f51-8194-6f92436a1ec3)
 <br/>
 Run the solution and Api with Scalar UI will launch.
@@ -19,7 +20,7 @@ EntityFramework is used for database creation.
 <br/>
 After Api is launched successfully, database named ProductDb should be created in your local server.
 <br/>
-![image](https://github.com/user-attachments/assets/407c1ed6-7838-432d-8f19-1dd38b219325)
+
 
 <br/>
 Run the script file StoredProcedure.sql which is in Infrastructure/Product.Persistence/Scripts
@@ -45,7 +46,7 @@ Update sql server connection string with your local SQL server setting in appset
 Update the log file path for Product.WebApi and Product.WebApp according to your PC.
 <br/>
 <br/>
-
+![image](https://github.com/user-attachments/assets/407c1ed6-7838-432d-8f19-1dd38b219325)
 <br/>
 <br/>
 Run the solution and two browser pages will launch.
