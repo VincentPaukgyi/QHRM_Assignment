@@ -35,7 +35,9 @@ Run the script file StoredProcedure.sql located under Infrastructure/Product.Per
 ![image](https://github.com/user-attachments/assets/32096828-55a8-4494-8fd6-b663f0e02e38)
 <br/>
 Stop the application and right-clik on Solution.
+<br/>
 Go to properties and Select Multiple Startup Projects:
+<br/>
 Set Product.WebApi, Product.WebApp as Startup projects.
 <br/>
 <br/>
@@ -45,11 +47,6 @@ Set Product.WebApi, Product.WebApp as Startup projects.
 Order must be as shown in Figure.
 <br/>
 Select IIS Express as Debug Target for All.
-<br/>
-Update sql server connection string with your local SQL server setting in appsettings.json of Product.WebApi 
-<br/>
-<br/>
-
 <br/>
 <br/>
 Update the log file path for Product.WebApi and Product.WebApp according to your PC.
