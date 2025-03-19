@@ -16,7 +16,7 @@ Select IIS Express as Debug Target
 Update sql server connection string with your local SQL server setting in appsettings.json of Product.WebApi
 <br/>
 <br/>
-![image](https://github.com/user-attachments/assets/51433b0b-cd22-4f51-8194-6f92436a1ec3)
+![image](https://github.com/user-attachments/assets/a34daeec-0aeb-4b14-97f4-8a069c26dc91)
 <br/>
 Run the solution and Api with Scalar UI will launch.
 <br/>
