@@ -1,4 +1,7 @@
 # ProductManagement
+Tools Required for Project
+- Microsoft Visual Studio 2022
+- Microsoft SQL Server 2022
 
 After downloading the project, Right-click on Solution and go to Properties.
 <br/>
