@@ -58,9 +58,8 @@ Update the log file path for Product.WebApi and Product.WebApp according to your
 Run the solution and two browser pages will launch.
 <br/>
 Api with Scalar UI and Website for Product CRUD.
-<br/>
-<br/>
 Now Project is ready for testing.
 <br/>
 <br/>
+![image](https://github.com/user-attachments/assets/4ad3f4ae-9ce6-4222-b3c1-f2a65ec491d6)
 
