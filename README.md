@@ -29,6 +29,16 @@ Run the solution and two browser pages will launch.
 <br/>
 Api with Scalar UI and Website for Product CRUD.
 <br/>
-EntityFramework is used for database creation
+EntityFramework is used for database creation.
 <br/>
 After projects are launched successfully, database named ProductDb should be created in your local server.
+<br/>
+<br/>
+![image](https://github.com/user-attachments/assets/501514f3-27a2-46eb-b87e-d3f5168af1a5)
+<br/>
+<br/>
+Now Project is ready for testing.
+<br/>
+<br/>
+![image](https://github.com/user-attachments/assets/4a29b828-6605-4d99-9b0b-2d4325793c9e)
+
