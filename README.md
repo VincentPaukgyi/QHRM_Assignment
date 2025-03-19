@@ -24,8 +24,9 @@ EntityFramework is used for database creation.
 <br/>
 After Api is launched successfully, database named ProductDb should be created in your local server.
 <br/>
-
-
+<br/>
+![image](https://github.com/user-attachments/assets/ce3880c5-5a30-4b77-9638-ede29fc61ee7)
+<br/>
 <br/>
 Run the script file StoredProcedure.sql which is in Infrastructure/Product.Persistence/Scripts
 <br/>
