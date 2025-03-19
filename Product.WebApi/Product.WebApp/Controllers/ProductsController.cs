@@ -28,7 +28,7 @@ namespace Product.WebApp.Controllers
         }
 
         // GET: Products/Details/5
-        public async Task<IActionResult> Details(Guid id)
+        public IActionResult Details(Guid id)
         {
             var product = _productApiClient.GetById(id);
             return View(product);
@@ -45,7 +45,7 @@ namespace Product.WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Price")] CreateProductDto product)
+        public IActionResult Create([Bind("Name,Description,Price")] CreateProductDto product)
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +56,7 @@ namespace Product.WebApp.Controllers
         }
 
         // GET: Products/Edit/5
-        public async Task<IActionResult> Edit(Guid id)
+        public IActionResult Edit(Guid id)
         {
             var productDetails = _productApiClient.GetById(id);
             if (productDetails == null)
@@ -73,7 +73,7 @@ namespace Product.WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Name,Description,Price,Id")] UpdateProductDto product)
+        public IActionResult Edit(Guid id, [Bind("Name,Description,Price,Id")] UpdateProductDto product)
         {
             if (id != product.Id)
             {
@@ -96,7 +96,7 @@ namespace Product.WebApp.Controllers
         }
 
         // GET: Products/Delete/5
-        public async Task<IActionResult> Delete(Guid id)
+        public IActionResult Delete(Guid id)
         {
            
             var product = _productApiClient.GetById(id);
@@ -111,7 +111,7 @@ namespace Product.WebApp.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public IActionResult DeleteConfirmed(Guid id)
         {
             _productApiClient.Delete(id);
 

@@ -1,11 +1,5 @@
-﻿using Dapper;
-using MediatR;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Product.Application.Helpers;
+﻿using MediatR;
 using Product.Application.Interfaces;
-using System.Data;
 
 namespace Product.Application.Features.ProductFeatures.Commands
 {

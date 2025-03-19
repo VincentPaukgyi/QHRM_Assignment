@@ -1,11 +1,6 @@
 ﻿using MediatR;
-using Microsoft.Extensions.Configuration;
 using Product.Application.Interfaces;
-using System.Data;
 using productNamespace = Product.Domain.Entities;
-using Microsoft.Data.SqlClient;
-using Dapper;
-using Product.Application.Helpers;
 
 
 namespace Product.Application.Features.ProductFeatures.Commands
