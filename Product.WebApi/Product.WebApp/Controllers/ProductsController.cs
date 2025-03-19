@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Product.Application.Features.ProductFeatures.DTOs;
 using Product.Application.Interfaces;
-using productNamespace = Product.Domain.Entities;
 
 namespace Product.WebApp.Controllers
 {
@@ -10,12 +10,15 @@ namespace Product.WebApp.Controllers
     {
         private readonly IApplicationDbContext _context;
         private readonly IProductApiClient _productApiClient;
+        private readonly IMapper _mapper;
 
         public ProductsController(IApplicationDbContext context,
-            IProductApiClient productApiClient)
+            IProductApiClient productApiClient,
+            IMapper mapper)
         {
             _context = context;
             _productApiClient = productApiClient;
+            _mapper = mapper;
         }
 
         // GET: Products
@@ -53,19 +56,16 @@ namespace Product.WebApp.Controllers
         }
 
         // GET: Products/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            if (id == null)
+            var productDetails = _productApiClient.GetById(id);
+            if (productDetails == null)
             {
                 return NotFound();
             }
-
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            return View(product);
+            var productUpdate = _mapper.Map<UpdateProductDto>(productDetails);
+            
+            return View(productUpdate);
         }
 
         // POST: Products/Edit/5
@@ -73,7 +73,7 @@ namespace Product.WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Name,Description,Price,Id,CreatedDate,UpdatedDate")] productNamespace.Product product)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Name,Description,Price,Id")] UpdateProductDto product)
         {
             if (id != product.Id)
             {
@@ -84,19 +84,11 @@ namespace Product.WebApp.Controllers
             {
                 try
                 {
-                    //_context.Update(product);
-                    //await _context.SaveChangesAsync();
+                    _productApiClient.Update(product);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -104,15 +96,10 @@ namespace Product.WebApp.Controllers
         }
 
         // GET: Products/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.Id == id);
+           
+            var product = _productApiClient.GetById(id);
             if (product == null)
             {
                 return NotFound();
@@ -126,19 +113,11 @@ namespace Product.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var product = await _context.Products.FindAsync(id);
-            if (product != null)
-            {
-                _context.Products.Remove(product);
-            }
+            _productApiClient.Delete(id);
 
-            //await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductExists(Guid id)
-        {
-            return _context.Products.Any(e => e.Id == id);
-        }
+        
     }
 }

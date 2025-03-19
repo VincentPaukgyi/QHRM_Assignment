@@ -65,7 +65,7 @@ namespace Product.WebApi.Controllers
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        [HttpPut("[action]")]
+        [HttpPut]
         public async Task<IActionResult> Update(UpdateProductDto product)
         {
             var command = _mapper.Map<UpdateProductCommand>(product);

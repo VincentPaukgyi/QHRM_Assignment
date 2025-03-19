@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Product.Application.Features.ProductFeatures.DTOs;
 using Product.Application.Interfaces;
-using Product.Domain.Entities;
 using System.Net.Http.Json;
 using System.Text.Json;
 
@@ -23,9 +22,15 @@ namespace Product.Service
             if (!response.IsSuccessStatusCode) throw new Exception("Product Creation Fail");
         }
 
-        public Guid Delete(Guid id)
+        public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(apiUrl);
+            var uri = new Uri(apiUrl + id.ToString());
+            var response = httpClient.DeleteAsync(uri).Result;
+            if (!response.IsSuccessStatusCode) throw new Exception("Get Product Fail");
+            var responseJson = response.Content.ReadAsStringAsync().Result;
+            
         }
 
         public List<ProductDto> GetAll()
@@ -40,7 +45,7 @@ namespace Product.Service
             return productList;
         }
 
-        public ProductDto GetById(Guid id)
+        public ProductDetailsDto GetById(Guid id)
         {
             var httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(apiUrl);
@@ -52,9 +57,13 @@ namespace Product.Service
             return product;
         }
 
-        public Guid Update(UpdateProductDto product)
+        public void Update(UpdateProductDto product)
         {
-            throw new NotImplementedException();
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(apiUrl);
+            var uri = new Uri(apiUrl);
+            var response = httpClient.PutAsJsonAsync(uri, product).Result;
+            if (!response.IsSuccessStatusCode) throw new Exception("Product Update Fail");
         }
     }
 }

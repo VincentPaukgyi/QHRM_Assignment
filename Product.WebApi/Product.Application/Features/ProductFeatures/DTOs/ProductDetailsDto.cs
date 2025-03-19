@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace Product.Application.Features.ProductFeatures.DTOs
 {
-    public class ProductDetailsDto : ProductDto
+    public class ProductDetailsDto : BaseProductDto
     {
        
         [JsonPropertyName("price")]

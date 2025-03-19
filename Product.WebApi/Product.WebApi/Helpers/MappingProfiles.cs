@@ -12,7 +12,8 @@ namespace Product.WebApi.Helpers
             CreateMap<productNamespace.Product, ProductDto>();
             CreateMap<productNamespace.Product, ProductDetailsDto>();
             CreateMap<CreateProductDto, CreateProductCommand>();
-            CreateMap<UpdateProductDto, UpdateProductCommand>();
+            CreateMap<UpdateProductDto, UpdateProductCommand>();    
+           
         }
     }
 }

@@ -5,9 +5,9 @@ namespace Product.Application.Interfaces
     public interface IProductApiClient
     {
         void Create(CreateProductDto product);
-        Guid Update(UpdateProductDto product);
-        Guid Delete(Guid id);
-        ProductDto GetById(Guid id);
+        void Update(UpdateProductDto product);
+        void Delete(Guid id);
+        ProductDetailsDto GetById(Guid id);
         List<ProductDto> GetAll();
     }
 }

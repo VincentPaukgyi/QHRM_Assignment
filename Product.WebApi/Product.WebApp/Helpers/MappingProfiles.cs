@@ -11,7 +11,8 @@ namespace Product.WebApp.Helpers
         {
             CreateMap<productNamespace.Product, ProductDto>();
             CreateMap<CreateProductDto, CreateProductCommand>();
-            CreateMap<UpdateProductDto, UpdateProductCommand>();            
+            CreateMap<UpdateProductDto, UpdateProductCommand>();
+            CreateMap<ProductDetailsDto, UpdateProductDto>();
         }
     }
 }
