@@ -3,15 +3,19 @@ After downloading the project, Right-click on Solution and go to Properties.
 <br/>
 Set Product.WebApi as StartUp Project
 <br/>
+<br/>
+![image](https://github.com/user-attachments/assets/fe509f78-7f39-4bdf-824e-caa8d3cd60d8)
+<br/>
+<br/>
 Select IIS Express as Debug Target
 <br/>
 <br/>
-![image](https://github.com/user-attachments/assets/fe509f78-7f39-4bdf-824e-caa8d3cd60d8)
+![image](https://github.com/user-attachments/assets/19d2f11c-fa59-4929-add2-37095b5b16b6)
+<br/>
 <br/>
 Update sql server connection string with your local SQL server setting in appsettings.json of Product.WebApi
 <br/>
 <br/>
-
 ![image](https://github.com/user-attachments/assets/51433b0b-cd22-4f51-8194-6f92436a1ec3)
 <br/>
 Run the solution and Api with Scalar UI will launch.
