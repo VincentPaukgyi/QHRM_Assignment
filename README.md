@@ -5,10 +5,13 @@ Set Product.WebApi as StartUp Project
 <br/>
 Select IIS Express as Debug Target
 <br/>
-
+<br/>
 ![image](https://github.com/user-attachments/assets/fe509f78-7f39-4bdf-824e-caa8d3cd60d8)
 <br/>
 Update sql server connection string with your local SQL server setting in appsettings.json of Product.WebApi
+<br/>
+<br/>
+![image](https://github.com/user-attachments/assets/51433b0b-cd22-4f51-8194-6f92436a1ec3)
 <br/>
 Run the solution and Api with Scalar UI will launch.
 <br/>
@@ -41,7 +44,7 @@ Update sql server connection string with your local SQL server setting in appset
 Update the log file path for Product.WebApi and Product.WebApp according to your PC.
 <br/>
 <br/>
-![image](https://github.com/user-attachments/assets/51433b0b-cd22-4f51-8194-6f92436a1ec3)
+
 <br/>
 <br/>
 Run the solution and two browser pages will launch.
